@@ -11,7 +11,7 @@ class Node{
     }   
 };
 
-void insert_at_tail(Node* &head, int val){
+void insert_at_tail(Node* &head, Node* &tail, int val){
     Node* newnode = new Node(val);
     if(head == NULL){
         head = newnode;
@@ -19,12 +19,8 @@ void insert_at_tail(Node* &head, int val){
     }
     Node *temp = head;
 
-    while (temp->next != NULL)
-    {
-        temp = temp->next;
-    }
-    //right now temp is a last node
-    temp->next = newnode;
+    tail->next = newnode;
+    tail = newnode;
 };
 
 void print_linked_list(Node* head){
@@ -38,16 +34,17 @@ void print_linked_list(Node* head){
 }
 
 int main(){
-    Node* head = NULL;
-    // Node* a = new Node(20);
-    // Node* b = new Node(30);
+    Node* head = new Node(10);
+    Node* a = new Node(20);
+    Node* tail = new Node(30);
 
-    // head->next = a;
-    // a->next = b;
+    head->next = a;
+    a->next = tail;
 
-    insert_at_tail(head,40);
+    insert_at_tail(head,tail,40);
 
     print_linked_list(head);
+    cout << "Tail = " << tail->val << endl;
     
     return 0;
 }
